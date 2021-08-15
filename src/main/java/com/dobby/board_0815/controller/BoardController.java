@@ -2,11 +2,13 @@ package com.dobby.board_0815.controller;
 
 import com.dobby.board_0815.model.Board;
 import com.dobby.board_0815.repository.BoardRepository;
+import com.dobby.board_0815.service.BoardService;
 import com.dobby.board_0815.validator.BoardValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -24,6 +26,9 @@ public class BoardController {
 
     @Autowired
     private BoardRepository boardRepository;
+
+    @Autowired
+    private BoardService boardService;
 
     @Autowired
     private BoardValidator boardValidator;
@@ -52,12 +57,14 @@ public class BoardController {
     }
 
     @PostMapping("/form")
-    public String submit(@Valid Board board, BindingResult bindingResult) {
+    public String submit(@Valid Board board, BindingResult bindingResult, Authentication authentication) {
         boardValidator.validate(board, bindingResult);
         if(bindingResult.hasErrors()) {
             return "board/form";
         }
-        boardRepository.save(board);
+        String username = authentication.getName();
+//        boardRepository.save(board);
+        boardService.save(username, board);
         return "redirect:/board/list";
     }
 }
