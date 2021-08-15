@@ -1,4 +1,4 @@
-package com.dobby.board_0815.controller;
+package com.dobby.board_0815.controller.api;
 
 import com.dobby.board_0815.model.Board;
 import com.dobby.board_0815.repository.BoardRepository;
