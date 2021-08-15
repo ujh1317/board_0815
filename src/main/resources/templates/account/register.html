@@ -18,8 +18,8 @@
 
 
     <form class="form-signin" th:action="@{/account/register}" method="post">
-        <img class="mb-4" src="https://getbootstrap.com/docs/4.6/assets/brand/bootstrap-solid.svg" alt="" width="72"
-            height="72">
+        <a th:href="@{/}"><img class="mb-4" src="https://getbootstrap.com/docs/4.6/assets/brand/bootstrap-solid.svg" alt="" width="72"
+            height="72"></a>
         <h1 class="h3 mb-3 font-weight-normal">Please join in</h1>
         <label for="username" class="sr-only">Username</label>
         <input type="text" id="username" name="username" class="form-control" placeholder="Username" required autofocus>
